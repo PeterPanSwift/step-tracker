@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  DashboardView.swift
 //  StepTracker
 //
 //  Created by SHIH-YING PAN on 2024/5/4.
@@ -28,7 +28,6 @@ struct DashboardView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                Text(Date(), format: .dateTime.month())
                 VStack(spacing: 20) {
                     Picker("Selected Stat", selection: $selectedStat) {
                         ForEach(HealthMetricContext.allCases) { metric in
@@ -90,7 +89,7 @@ struct DashboardView: View {
             .padding()
             .navigationTitle("Dashboard")
             .navigationDestination(for: HealthMetricContext.self) { metric in
-                Text(metric.title)
+                HealthDataListView(metric: metric)
             }
         }
         .tint(isSteps ? .pink : .indigo)
